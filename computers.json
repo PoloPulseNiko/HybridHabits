@@ -1,0 +1,46 @@
+{
+  "computers": [
+    {
+      "id": 1,
+      "name": "Lenovo Thinkpad X220",
+      "description": "The daily driver/comfort machine",
+      "specs": {
+        "cpu": "Intel Core I5-2410M",
+        "ram": "16 GB DDR3",
+        "storage": "Crucial_CT250MX2 256GB SATA SSD (Windows 7) + Orico 256 GB mSATA SSD (Linux Mint Cinnamon)",
+        "os": "Windows 7 Ultimate (64 Bit) + Linux Mint Cinnamon 22.2"
+      },
+      "notes": "Used for daily development and work."
+    },
+    {
+      "id": 2,
+      "name": "Macbook Air (M1) 2020",
+      "description": "The powerful click and play machine",
+      "specs": {
+        "cpu": "Apple M1",
+        "ram": "16 GB Unified Memory",
+        "storage": "256 GB SSD",
+        "os": "MacOS Tahoe 26.2"
+      },
+      "notes": "Used for power hungry development tasks, video editing and as a secondary daily driver."
+    },
+    {
+      "id": 3,
+      "name": "Lenovo LOQ",
+      "description": "The gaming rig",
+      "specs": {
+        "cpu": "AMD Ryzen 7 7700H",
+        "ram": "16 GB RAM",
+        "storage": "256 GB SSD",
+        "GPU": "NVIDIA GeForce RTX 4050 (6 GB)",
+        "os": "Windows 11 Pro"
+      },
+      "peripherals": {
+        "keyboard": "Apple Keyboard (A1048, 109 Keys)",
+        "monitor": "Iiyama Prolite B2480HS-B2",
+        "other": "Logitech 720p webcam (model unknown), generic headphoes with microphone"
+      },
+      "notes": "Used for gaming and predominantly as a home desktop. And yes I do use a keyboard from a 2005 iMac."
+    }
+  ]
+}

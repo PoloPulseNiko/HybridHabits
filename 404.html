@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found | The Hybrid Habits</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            background-color: black;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            font-family: sans-serif;
+            text-align: center;
+        }
+
+        main {
+            z-index: 1;
+        }
+
+        video#rickroll {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+
+        a {
+            color: #1e90ff;
+        }
+    </style>
+</head>
+<body>
+    <!-- Video background -->
+    <video id="rickroll" autoplay loop playsinline>
+        <source src="rickroll.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <main>
+        <h2>404 - Page Not Found</h2>
+        <p class="tagline">Oops! This page doesn't exist.</p>
+        
+        <div class="welcome-box">
+            <p>Sorry, it looks like you've wandered off the digital map. The page you're looking for doesn't exist or may have been moved.</p>
+            <p>No worries though! Head back to the <a href="index.html">home page</a> or explore the rest of the site using the navigation menu above.</p>
+        </div>
+    </main>
+
+    <footer></footer>
+
+    <script>
+        const video = document.getElementById('rickroll');
+
+        // Attempt to autoplay with sound in a robust way
+        async function tryPlayVideo() {
+            try {
+                await video.play();
+                video.muted = false;
+            } catch (err) {
+                // If autoplay is blocked, wait for any user interaction
+                const unmuteOnInteraction = () => {
+                    video.muted = false;
+                    video.play();
+                    document.body.removeEventListener('click', unmuteOnInteraction);
+                    document.body.removeEventListener('keydown', unmuteOnInteraction);
+                };
+                document.body.addEventListener('click', unmuteOnInteraction);
+                document.body.addEventListener('keydown', unmuteOnInteraction);
+            }
+        }
+
+        tryPlayVideo();
+    </script>
+
+    <script src="load-components.js"></script>
+    <script src="music-manager.js"></script>
+</body>
+</html>

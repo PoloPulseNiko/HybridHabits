@@ -28,6 +28,7 @@ header {
     padding: 25px;
     text-align: center;
     box-shadow: inset 0 2px 5px rgba(255, 255, 255, 0.6), 0 3px 10px rgba(0, 0, 0, 0.2);
+    position: relative;
 }
 
 header h1 {
@@ -361,6 +362,56 @@ main {
     border-color: #555555;
 }
 
+/* Computers Page Styles */
+.computers-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin: 25px auto;
+}
+
+.computer-item {
+    background-color: #c9c9c9;
+    border: 2px solid #888888;
+    padding: 20px;
+    box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.6);
+    transition: all 0.3s ease;
+}
+
+.computer-item:hover {
+    background-color: #d9d9d9;
+    border-color: #666666;
+}
+
+.computer-item h3 {
+    color: #333333;
+    font-size: 1.3em;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.computer-item h4 {
+    color: #333333;
+    font-size: 1.1em;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid #999999;
+    padding-bottom: 5px;
+}
+
+.computer-item ul {
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+
+.computer-item li {
+    margin-bottom: 8px;
+    color: #333333;
+}
+
 /* Footer */
 footer {
     text-align: center;
@@ -372,4 +423,60 @@ footer {
     font-weight: bold;
     font-size: 0.9em;
     box-shadow: inset 0 2px 5px rgba(255, 255, 255, 0.6);
+}
+
+.footer-attribution {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #999999;
+    font-size: 0.8em;
+    font-weight: normal;
+    color: #555555;
+    line-height: 1.5;
+}
+
+.footer-attribution a {
+    color: #333333;
+    text-decoration: underline;
+}
+
+.footer-attribution a:hover {
+    color: #666666;
+}
+
+/* Music Player */
+.music-player {
+    position: absolute;
+    top: 15px;
+    left: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+}
+
+.music-toggle {
+    background-color: #b8b8b8;
+    color: #333333;
+    border: 2px solid #666666;
+    padding: 8px 15px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 0.85em;
+    box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.5);
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.music-toggle:hover {
+    background-color: #999999;
+    color: #ffffff;
+}
+
+.music-toggle.muted {
+    opacity: 0.8;
+}
+
+.music-credits {
+    display: none;
 }
