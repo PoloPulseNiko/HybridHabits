@@ -1,5 +1,5 @@
 // Load and manage music player
-fetch('music-player.html')
+fetch('/music-player.html')
     .then(response => response.text())
     .then(data => {
         // Insert inside header at the beginning

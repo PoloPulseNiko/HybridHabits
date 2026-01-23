@@ -1,5 +1,5 @@
 // Load navbar
-fetch('nav.html')
+fetch('/nav.html')
     .then(response => response.text())
     .then(data => {
         const header = document.querySelector('header');
@@ -9,7 +9,7 @@ fetch('nav.html')
     });
 
 // Load footer
-fetch('footer.html')
+fetch('/footer.html')
     .then(response => response.text())
     .then(data => {
         const footer = document.querySelector('footer');
