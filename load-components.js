@@ -1,5 +1,6 @@
-// Detect if we're in a subdirectory
-const basePath = window.location.pathname.includes('/blogentries/') ? '../' : '';
+// Detect if we're in a subdirectory by checking the current path depth
+const pathSegments = window.location.pathname.split('/').filter(seg => seg);
+const basePath = pathSegments.length > 1 && pathSegments[pathSegments.length - 2] === 'blogentries' ? '../' : '';
 
 // Load navbar
 fetch(basePath + 'nav.html')
@@ -9,7 +10,8 @@ fetch(basePath + 'nav.html')
         if (header) {
             header.outerHTML = data;
         }
-    });
+    })
+    .catch(error => console.error('Error loading nav:', error));
 
 // Load footer
 fetch(basePath + 'footer.html')
@@ -19,4 +21,5 @@ fetch(basePath + 'footer.html')
         if (footer) {
             footer.outerHTML = data;
         }
-    });
+    })
+    .catch(error => console.error('Error loading footer:', error));

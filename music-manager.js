@@ -1,5 +1,6 @@
-// Detect if we're in a subdirectory
-const basePath = window.location.pathname.includes('/blogentries/') ? '../' : '';
+// Detect if we're in a subdirectory by checking the current path depth
+const pathSegments = window.location.pathname.split('/').filter(seg => seg);
+const basePath = pathSegments.length > 1 && pathSegments[pathSegments.length - 2] === 'blogentries' ? '../' : '';
 
 // Load and manage music player
 fetch(basePath + 'music-player.html')
@@ -11,7 +12,8 @@ fetch(basePath + 'music-player.html')
             header.insertAdjacentHTML('afterbegin', data);
             initMusicPlayer();
         }
-    });
+    })
+    .catch(error => console.error('Error loading music player:', error));
 
 function initMusicPlayer() {
     const audio = document.getElementById('bg-music');
@@ -21,9 +23,13 @@ function initMusicPlayer() {
 
     // Set the correct audio source path
     const audioSource = audio.querySelector('source');
-    if (audioSource && window.location.pathname.includes('/blogentries/')) {
-        audioSource.src = '../surf-house-productions-island-breeze.mp3';
-        audio.load();
+    if (audioSource) {
+        const pathSegments = window.location.pathname.split('/').filter(seg => seg);
+        const isInSubdir = pathSegments.length > 1 && pathSegments[pathSegments.length - 2] === 'blogentries';
+        if (isInSubdir) {
+            audioSource.src = '../surf-house-productions-island-breeze.mp3';
+            audio.load();
+        }
     }
 
     // Always start paused, never autoplay
