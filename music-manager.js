@@ -1,5 +1,8 @@
+// Detect if we're in a subdirectory
+const basePath = window.location.pathname.includes('/blogentries/') ? '../' : '';
+
 // Load and manage music player
-fetch('/music-player.html')
+fetch(basePath + 'music-player.html')
     .then(response => response.text())
     .then(data => {
         // Insert inside header at the beginning
@@ -15,6 +18,13 @@ function initMusicPlayer() {
     const toggle = document.getElementById('music-toggle');
     
     if (!audio || !toggle) return;
+
+    // Set the correct audio source path
+    const audioSource = audio.querySelector('source');
+    if (audioSource && window.location.pathname.includes('/blogentries/')) {
+        audioSource.src = '../surf-house-productions-island-breeze.mp3';
+        audio.load();
+    }
 
     // Always start paused, never autoplay
     audio.pause();

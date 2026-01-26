@@ -1,5 +1,8 @@
+// Detect if we're in a subdirectory
+const basePath = window.location.pathname.includes('/blogentries/') ? '../' : '';
+
 // Load navbar
-fetch('nav.html')
+fetch(basePath + 'nav.html')
     .then(response => response.text())
     .then(data => {
         const header = document.querySelector('header');
@@ -9,7 +12,7 @@ fetch('nav.html')
     });
 
 // Load footer
-fetch('footer.html')
+fetch(basePath + 'footer.html')
     .then(response => response.text())
     .then(data => {
         const footer = document.querySelector('footer');
