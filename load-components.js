@@ -15,9 +15,30 @@ async function loadComponent(filename, targetSelector, replaceMethod = 'outerHTM
             } else {
                 target.innerHTML = data;
             }
+            
+            // Fix navigation links if we're in a subdirectory
+            if (filename === 'nav.html') {
+                fixNavLinks();
+            }
         }
     } catch (error) {
         console.error(`Error loading ${filename}:`, error);
+    }
+}
+
+// Fix navigation links based on current directory
+function fixNavLinks() {
+    const pathDepth = window.location.pathname.split('/').filter(seg => seg && seg.endsWith('.html')).length;
+    const isInSubdir = pathDepth > 0 && window.location.pathname.includes('/blogentries/');
+    
+    if (isInSubdir) {
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            const href = link.getAttribute('href');
+            if (href && !href.startsWith('http') && !href.startsWith('../')) {
+                link.setAttribute('href', '../' + href);
+            }
+        });
     }
 }
 

@@ -1,6 +1,9 @@
 // Try to load music player from relative path, fallback to parent directory
 async function loadMusicPlayer() {
     try {
+        // Detect if we're in a subdirectory
+        const isInSubdir = window.location.pathname.includes('/blogentries/');
+        
         // First try current directory
         let response = await fetch('music-player.html');
         if (!response.ok) {
@@ -11,7 +14,7 @@ async function loadMusicPlayer() {
         const header = document.querySelector('header');
         if (header) {
             header.insertAdjacentHTML('afterbegin', data);
-            initMusicPlayer();
+            initMusicPlayer(isInSubdir);
         }
     } catch (error) {
         console.error('Error loading music player:', error);
@@ -20,21 +23,17 @@ async function loadMusicPlayer() {
 
 loadMusicPlayer();
 
-function initMusicPlayer() {
+function initMusicPlayer(isInSubdir = false) {
     const audio = document.getElementById('bg-music');
     const toggle = document.getElementById('music-toggle');
     
     if (!audio || !toggle) return;
 
-    // Set the correct audio source path - try both possibilities
+    // Set the correct audio source path
     const audioSource = audio.querySelector('source');
-    if (audioSource) {
-        // Check if current source works, otherwise try parent directory
-        const currentSrc = audioSource.src;
-        if (!currentSrc || currentSrc.includes('undefined')) {
-            audioSource.src = '../surf-house-productions-island-breeze.mp3';
-            audio.load();
-        }
+    if (audioSource && isInSubdir) {
+        audioSource.src = '../surf-house-productions-island-breeze.mp3';
+        audio.load();
     }
 
     // Always start paused, never autoplay
