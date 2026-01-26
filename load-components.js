@@ -1,25 +1,26 @@
-// Detect if we're in a subdirectory by checking the current path depth
-const pathSegments = window.location.pathname.split('/').filter(seg => seg);
-const basePath = pathSegments.length > 1 && pathSegments[pathSegments.length - 2] === 'blogentries' ? '../' : '';
-
-// Load navbar
-fetch(basePath + 'nav.html')
-    .then(response => response.text())
-    .then(data => {
-        const header = document.querySelector('header');
-        if (header) {
-            header.outerHTML = data;
+// Try to load from relative path, fallback to parent directory
+async function loadComponent(filename, targetSelector, replaceMethod = 'outerHTML') {
+    try {
+        // First try current directory
+        let response = await fetch(filename);
+        if (!response.ok) {
+            // If that fails, try parent directory
+            response = await fetch('../' + filename);
         }
-    })
-    .catch(error => console.error('Error loading nav:', error));
-
-// Load footer
-fetch(basePath + 'footer.html')
-    .then(response => response.text())
-    .then(data => {
-        const footer = document.querySelector('footer');
-        if (footer) {
-            footer.outerHTML = data;
+        const data = await response.text();
+        const target = document.querySelector(targetSelector);
+        if (target) {
+            if (replaceMethod === 'outerHTML') {
+                target.outerHTML = data;
+            } else {
+                target.innerHTML = data;
+            }
         }
-    })
-    .catch(error => console.error('Error loading footer:', error));
+    } catch (error) {
+        console.error(`Error loading ${filename}:`, error);
+    }
+}
+
+// Load navbar and footer
+loadComponent('nav.html', 'header');
+loadComponent('footer.html', 'footer');
