@@ -15,50 +15,7 @@
             <p class="tagline">Find me across the web</p>
             
             <div class="links-container">
-                <div class="link-item">
-                    <h3>Portfolio</h3>
-                    <a href="404.html" class="link-button">Visit</a>
-                </div>
-
-                <div class="link-item">
-                    <h3>GitHub</h3>
-                    <a href="https://github.com/PoloPulseNiko" class="link-button">Visit</a>
-                </div>
-
-                <div class="link-item">
-                    <h3>Twitter / X</h3>
-                    <a href="nox.html" class="link-button">Visit</a>
-                </div>
-
-                <div class="link-item">
-                    <h3>LinkedIn</h3>
-                    <a href="404.html" class="link-button">Visit</a>
-                </div>
-
-                <div class="link-item">
-                    <h3>Instagram</h3>
-                    <a href="404.html" class="link-button">Visit</a>
-                </div>
-
-                <div class="link-item">
-                    <h3>YouTube</h3>
-                    <a href="404.html" class="link-button">Visit</a>
-                </div>
-
-                <div class="link-item">
-                    <h3>Discord</h3>
-                    <a href="https://www.discord.gg/mjqJuUfHj2" class="link-button">Visit</a>
-                </div>
-
-                <div class="link-item">
-                    <h3>SpaceHey</h3>
-                    <a href="https://spacehey.com/polopulse" class="link-button">Visit</a>
-                </div>
-
-                <div class="link-item">
-                    <h3>Email</h3>
-                    <a href="404.html" class="link-button">Contact</a>
-                </div>
+                <!-- Links will load here -->
             </div>
         </section>
     </main>
@@ -66,5 +23,35 @@
     <footer></footer>
     <script src="load-components.js"></script>
     <script src="music-manager.js"></script>
+    <script>
+        fetch('links.json')
+            .then(response => response.json())
+            .then(data => {
+                const container = document.querySelector('.links-container');
+                const links = data.links || [];
+
+                links.forEach(link => {
+                    const linkItem = document.createElement('div');
+                    linkItem.className = 'link-item';
+
+                    const heading = document.createElement('h3');
+                    heading.textContent = link.name;
+
+                    const button = document.createElement('a');
+                    button.href = link.url;
+                    button.className = 'link-button';
+                    button.textContent = link.name === 'Email' ? 'Contact' : 'Visit';
+
+                    linkItem.appendChild(heading);
+                    linkItem.appendChild(button);
+                    container.appendChild(linkItem);
+                });
+            })
+            .catch(error => {
+                console.error('Error loading links:', error);
+                const container = document.querySelector('.links-container');
+                container.innerHTML = '<p class="post-excerpt">Could not load links.</p>';
+            });
+    </script>
 </body>
 </html>

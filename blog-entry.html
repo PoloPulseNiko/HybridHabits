@@ -15,6 +15,19 @@
                 <h3 class="post-title" id="post-title">Loading...</h3>
                 <p class="post-date" id="post-date"></p>
                 <div id="post-content"></div>
+                
+                <!-- Comments Section -->
+                <div id="comments-section" style="margin-top: 40px; display: none;">
+                    <h3 style="margin-bottom: 20px; color: #333333; font-size: 1.3em; text-transform: uppercase; letter-spacing: 1px; border-bottom: 2px solid #999999; padding-bottom: 10px;">Comments</h3>
+                    <script src="https://utteranc.es/client.js"
+                            repo="PoloPulseNiko/HybridHabits"
+                            issue-term="title"
+                            theme="github-light"
+                            crossorigin="anonymous"
+                            async>
+                    </script>
+                </div>
+                
                 <p id="post-back" style="margin-top: 30px; display: none;"><a href="blog.html">← Back to Blog</a></p>
                 <p id="post-status" class="post-excerpt" style="margin-top: 20px; display: none;"></p>
             </article>
@@ -65,17 +78,43 @@
 
                     document.title = `${post.title} - ${post.displayDate || ''} | The Hybrid Habits`;
                     titleEl.textContent = post.title || 'Untitled';
-                    dateEl.textContent = post.displayDate || post.sortDate || '';
+                    const dateText = post.displayDate || post.sortDate || '';
+                    const timeText = post.displayTime ? ` at ${post.displayTime}` : '';
+                    dateEl.textContent = dateText + timeText;
                     contentEl.innerHTML = '';
 
-                    if (Array.isArray(post.paragraphs) && post.paragraphs.length) {
-                        post.paragraphs.forEach(text => {
+                    // Support new 'content' format (text + images) or legacy 'paragraphs'
+                    const contentItems = post.content || (post.paragraphs || []).map(text => ({type: 'text', value: text}));
+
+                    contentItems.forEach(item => {
+                        if (item.type === 'text') {
                             const paragraph = document.createElement('p');
                             paragraph.className = 'post-excerpt';
-                            paragraph.textContent = text;
+                            paragraph.textContent = item.value || item;
                             contentEl.appendChild(paragraph);
-                        });
-                    }
+                        } else if (item.type === 'image') {
+                            const figure = document.createElement('figure');
+                            figure.className = 'blog-image';
+                            
+                            const img = document.createElement('img');
+                            img.src = item.src || '';
+                            img.alt = item.alt || '';
+                            img.loading = 'lazy';
+                            
+                            figure.appendChild(img);
+                            
+                            if (item.caption) {
+                                const caption = document.createElement('figcaption');
+                                caption.textContent = item.caption;
+                                figure.appendChild(caption);
+                            }
+                            
+                            contentEl.appendChild(figure);
+                        }
+                    });
+
+                    // Show comments section
+                    document.getElementById('comments-section').style.display = 'block';
 
                     backEl.style.display = 'block';
                     statusEl.style.display = 'none';

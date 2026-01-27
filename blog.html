@@ -40,9 +40,9 @@
                     const posts = (data && Array.isArray(data.posts)) ? [...data.posts] : [];
 
                     posts.sort((a, b) => {
-                        const aDate = a.sortDate || a.displayDate || '';
-                        const bDate = b.sortDate || b.displayDate || '';
-                        return bDate.localeCompare(aDate);
+                        const aDateTime = `${a.sortDate || ''}T${a.sortTime || '00:00'}`;
+                        const bDateTime = `${b.sortDate || ''}T${b.sortTime || '00:00'}`;
+                        return bDateTime.localeCompare(aDateTime);
                     });
 
                     postsContainer.innerHTML = '';
@@ -62,7 +62,9 @@
 
                         const date = document.createElement('p');
                         date.className = 'post-date';
-                        date.textContent = post.displayDate || post.sortDate || '';
+                        const dateText = post.displayDate || post.sortDate || '';
+                        const timeText = post.displayTime ? ` at ${post.displayTime}` : '';
+                        date.textContent = dateText + timeText;
 
                         const excerpt = document.createElement('p');
                         excerpt.className = 'post-excerpt';

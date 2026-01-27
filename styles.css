@@ -361,6 +361,32 @@ main {
     border-color: #555555;
 }
 
+/* Blog Images */
+.blog-image {
+    margin: 25px 0;
+    text-align: center;
+}
+
+.blog-image img {
+    max-width: 100%;
+    height: auto;
+    border: 2px solid #888888;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    display: block;
+    margin: 0 auto;
+}
+
+.blog-image figcaption {
+    margin-top: 10px;
+    font-size: 0.9em;
+    color: #666666;
+    font-style: italic;
+    padding: 8px 15px;
+    background-color: #c9c9c9;
+    border: 1px solid #999999;
+    display: inline-block;
+}
+
 /* Computers Page Styles */
 .computers-container {
     display: flex;

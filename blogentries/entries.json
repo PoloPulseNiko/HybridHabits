@@ -1,4 +1,20 @@
 {
+  "_comment": "Blog post template - copy and modify the template below",
+  "_template": {
+    "slug": "unique-url-slug",
+    "title": "Post Title",
+    "displayDate": "Month Day, Year",
+    "displayTime": "HH:MM AM/PM (optional - only if you want to show time)",
+    "sortDate": "YYYY-MM-DD",
+    "sortTime": "HH:MM (24-hour format, optional - for sorting multiple posts per day)",
+    "excerpt": "Short preview text shown on blog listing page",
+    "content": [
+      {"type": "text", "value": "First paragraph text goes here."},
+      {"type": "image", "src": "blogentries/images/photo.jpg", "alt": "Image description", "caption": "Optional caption"},
+      {"type": "text", "value": "Second paragraph text goes here."}
+    ]
+  },
+  "_legacy_note": "You can still use 'paragraphs' array instead of 'content' for text-only posts",
   "posts": [
     {
       "slug": "a-new-beginning",
@@ -17,7 +33,9 @@
         "slug": "making-progress",
         "title": "Making Progress",
         "displayDate": "January 27, 2026",
+        "displayTime": "16:00",
         "sortDate": "2026-01-27",
+        "sortTime": "16:00",
         "excerpt": "Just a quick update on the site's progress",
         "paragraphs": [
             "Hello again! Two posts in a row. Crazy, I know. I just wanted to share something that might not be very visible but it makes life a bit easier for me, especialy when it comes to this blog.",
@@ -25,6 +43,21 @@
             "So I decided to do a bit more JavaScript coding (which for the record I do not like doing but it is the only way to get things done in a page like this) and I made a script that allows me to simply add the posts in a JSON file, and then the script takes the file, adds a URL slug of my choice (basically like an identifier for the particular page) and then following a template it generates the page for me. No more adding more HTML files and divs by hand. While it is still not the easiest way to go about it it is quite an improvement and with not a whole lot of code!",
             "I will do my best to implement a way to add pictures to the posts but as they say, you have to learn to walk before you can learn to run. So far I am very happy with the progress that I am making on this site. Also if you have taken a look at the links page you may have noticed that some of the links actually work now and they do not send you to a 404 page (that has an easter egg specifically for Chrome users). What I will do as a temporary measure for the comments is I will set up a little blog discussion channel in the Discord server for people to discuss the posts.",
             "Anywho that is all for this blog post. I cannot set up an email notification at this time for the same reason for which it is not possible to comment. But yeah on that bombshell good day!"
+        ]
+    },
+    {
+        "slug": "comments-added",
+        "title": "Comments now possible!",
+        "displayDate": "January 27, 2026",
+        "displayTime": "19:00",
+        "sortDate": "2026-01-27",
+        "sortTime": "19:00",
+        "excerpt": "Two posts on the same day? Madness!",
+        "paragraphs": [
+            "Oh no! Another post! On the same day?!? WHAT IS HAPPENING?!? Well I have some news that could not wait till tomorrow. I may or may not have added another bit of functionality to the site. And if you scroll down to the bottom of this post you will see it! That's right! You can now comment on posts!",
+            "Now before you get too excited there is one caveat. You need a Github account. And I know, making a Github account just to comment on a random bloke's blog posts is insane. But here's the thing. There is this plug-in on Github called Utterances and it is open source, it was extremely easy to set up and it adds comment functionality! It was a bit of a no brainer as I was wondering how I would add a comment section to a static site. It is not exactly an easy feat. So yeah, if you have a Github account feel free to comment away! If you do not have one well I guess you can always make one or just read the posts without commenting. Either way is fine by me.",
+            "In other news future posts might include pictures which is fun! Also if you have opened this site on a mobile device at any point prior to today you may have noticed that it looked horrible. Well I have some good news! I did some responsive web design magic in the CSS file and so now it actually looks like a proper website! How novel!",
+            "Anywho that is all for today. I promise. No more posts today (totally not gonna put up another one just to be a nuisance, joking). Till next time!"
         ]
     }
   ]
