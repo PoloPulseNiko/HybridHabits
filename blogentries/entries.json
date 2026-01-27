@@ -1,0 +1,31 @@
+{
+  "posts": [
+    {
+      "slug": "a-new-beginning",
+      "title": "A New Beginning",
+      "displayDate": "January 26, 2026",
+      "sortDate": "2026-01-26",
+      "excerpt": "Welcome to the new home of Hybrid Habits - customizable, truly mine, and where everything lives in one place.",
+      "paragraphs": [
+        "Welcome to the new home of Hybrid Habits! This is where I'll be sharing all my projects, experiments, and thoughts - professional, personal, or just random bits of life. I wanted a space that I could fully customize, truly mine, and where everything lives in one place. This is it.",
+        "A few quick notes: the site is very much a work in progress, and comments aren't available yet - I'll figure out a proper backend eventually.",
+        "It's been about seven months since my last post on WordPress. Life since then has mostly been uni and work, with the highlight being a long-awaited trip to the UK. Not much else of note, but it feels good to get back to writing here in a space that's completely mine.",
+        "Hybrid Habits isn't just a portfolio - it's a home for reflection, experiments, and whatever I feel like sharing. Some posts will be quick updates; others might dive deeper into projects or personal thoughts. Thanks for stopping by, and I'm excited to see where this new chapter goes!"
+      ]
+    },
+    {
+        "slug": "making-progress",
+        "title": "Making Progress",
+        "displayDate": "January 27, 2026",
+        "sortDate": "2026-01-27",
+        "excerpt": "Just a quick update on the site's progress",
+        "paragraphs": [
+            "Hello again! Two posts in a row. Crazy, I know. I just wanted to share something that might not be very visible but it makes life a bit easier for me, especialy when it comes to this blog.",
+            "You see up until now, every time I wanted to make a blog post I had to make another article division in the blog's main page, then create another HTML page for the entry itself and then link these together. It is quite a bit of work which is not exactly ideal.",
+            "So I decided to do a bit more JavaScript coding (which for the record I do not like doing but it is the only way to get things done in a page like this) and I made a script that allows me to simply add the posts in a JSON file, and then the script takes the file, adds a URL slug of my choice (basically like an identifier for the particular page) and then following a template it generates the page for me. No more adding more HTML files and divs by hand. While it is still not the easiest way to go about it it is quite an improvement and with not a whole lot of code!",
+            "I will do my best to implement a way to add pictures to the posts but as they say, you have to learn to walk before you can learn to run. So far I am very happy with the progress that I am making on this site. Also if you have taken a look at the links page you may have noticed that some of the links actually work now and they do not send you to a 404 page (that has an easter egg specifically for Chrome users). What I will do as a temporary measure for the comments is I will set up a little blog discussion channel in the Discord server for people to discuss the posts.",
+            "Anywho that is all for this blog post. I cannot set up an email notification at this time for the same reason for which it is not possible to comment. But yeah on that bombshell good day!"
+        ]
+    }
+  ]
+}

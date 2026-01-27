@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Entry | The Hybrid Habits</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header></header>
+
+    <main>
+        <section id="blog-entry" class="hero">
+            <article class="blog-post" id="post-article">
+                <h3 class="post-title" id="post-title">Loading...</h3>
+                <p class="post-date" id="post-date"></p>
+                <div id="post-content"></div>
+                <p id="post-back" style="margin-top: 30px; display: none;"><a href="blog.html">← Back to Blog</a></p>
+                <p id="post-status" class="post-excerpt" style="margin-top: 20px; display: none;"></p>
+            </article>
+        </section>
+
+        <aside class="sidebar">
+            <div class="sidebar-box">
+                <h3>Navigation</h3>
+                <p><a href="index.html">Home</a></p>
+                <p><a href="blog.html">All Blog Posts</a></p>
+            </div>
+        </aside>
+    </main>
+
+    <footer></footer>
+    <script src="load-components.js"></script>
+    <script src="music-manager.js"></script>
+    <script>
+        (() => {
+            const params = new URLSearchParams(window.location.search);
+            const slug = params.get('slug');
+            const titleEl = document.getElementById('post-title');
+            const dateEl = document.getElementById('post-date');
+            const contentEl = document.getElementById('post-content');
+            const statusEl = document.getElementById('post-status');
+            const backEl = document.getElementById('post-back');
+
+            const showStatus = message => {
+                statusEl.textContent = message;
+                statusEl.style.display = 'block';
+            };
+
+            if (!slug) {
+                showStatus('No post selected.');
+                return;
+            }
+
+            fetch('blogentries/entries.json')
+                .then(response => response.json())
+                .then(data => {
+                    const posts = Array.isArray(data.posts) ? data.posts : [];
+                    const post = posts.find(p => p.slug === slug);
+
+                    if (!post) {
+                        showStatus('Post not found.');
+                        return;
+                    }
+
+                    document.title = `${post.title} - ${post.displayDate || ''} | The Hybrid Habits`;
+                    titleEl.textContent = post.title || 'Untitled';
+                    dateEl.textContent = post.displayDate || post.sortDate || '';
+                    contentEl.innerHTML = '';
+
+                    if (Array.isArray(post.paragraphs) && post.paragraphs.length) {
+                        post.paragraphs.forEach(text => {
+                            const paragraph = document.createElement('p');
+                            paragraph.className = 'post-excerpt';
+                            paragraph.textContent = text;
+                            contentEl.appendChild(paragraph);
+                        });
+                    }
+
+                    backEl.style.display = 'block';
+                    statusEl.style.display = 'none';
+                })
+                .catch(() => {
+                    showStatus('Could not load this post right now.');
+                });
+        })();
+    </script>
+</body>
+</html>

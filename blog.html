@@ -15,12 +15,7 @@
             <p class="tagline">Thoughts, insights, and stories</p>
             
             <div class="blog-posts">
-                <article class="blog-post">
-                    <h3 class="post-title">A new beginning</h3>
-                    <p class="post-date">January 26, 2026</p>
-                    <p class="post-excerpt">The start of the Hybrid Habits website and a new home for the Hybrid Habits.</p>
-                    <a href="blogentries/012626.html" class="read-more">Read more →</a>
-                </article>
+                <p class="post-excerpt">Loading posts...</p>
             </div>
         </section>
     </main>
@@ -28,5 +23,64 @@
     <footer></footer>
     <script src="load-components.js"></script>
     <script src="music-manager.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const postsContainer = document.querySelector('.blog-posts');
+            if (!postsContainer) {
+                return;
+            }
+
+            const renderError = message => {
+                postsContainer.innerHTML = `<p class="post-excerpt">${message}</p>`;
+            };
+
+            fetch('blogentries/entries.json')
+                .then(response => response.json())
+                .then(data => {
+                    const posts = (data && Array.isArray(data.posts)) ? [...data.posts] : [];
+
+                    posts.sort((a, b) => {
+                        const aDate = a.sortDate || a.displayDate || '';
+                        const bDate = b.sortDate || b.displayDate || '';
+                        return bDate.localeCompare(aDate);
+                    });
+
+                    postsContainer.innerHTML = '';
+
+                    if (!posts.length) {
+                        renderError('No posts yet.');
+                        return;
+                    }
+
+                    posts.forEach(post => {
+                        const article = document.createElement('article');
+                        article.className = 'blog-post';
+
+                        const title = document.createElement('h3');
+                        title.className = 'post-title';
+                        title.textContent = post.title || 'Untitled';
+
+                        const date = document.createElement('p');
+                        date.className = 'post-date';
+                        date.textContent = post.displayDate || post.sortDate || '';
+
+                        const excerpt = document.createElement('p');
+                        excerpt.className = 'post-excerpt';
+                        excerpt.textContent = post.excerpt || '';
+
+                        const link = document.createElement('a');
+                        link.className = 'read-more';
+                        link.href = `blog-entry.html?slug=${encodeURIComponent(post.slug || '')}`;
+                        link.textContent = 'Read more →';
+
+                        article.append(title, date, excerpt, link);
+                        postsContainer.appendChild(article);
+                    });
+                })
+                .catch(() => {
+                    renderError('Could not load posts right now.');
+                });
+        });
+    </script>
 </body>
 </html>
