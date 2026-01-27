@@ -479,3 +479,190 @@ footer {
 .music-credits {
     display: none;
 }
+
+/* Responsive Design - Ultrawide Screens */
+@media screen and (min-width: 1400px) {
+    main {
+        max-width: 1200px;
+    }
+
+    .sidebar {
+        width: 320px;
+    }
+
+    .hero {
+        padding: 40px;
+    }
+
+    header h1 {
+        font-size: 3.5em;
+    }
+}
+
+@media screen and (min-width: 1800px) {
+    main {
+        max-width: 1400px;
+        gap: 30px;
+    }
+
+    .sidebar {
+        width: 360px;
+    }
+
+    .hero {
+        padding: 50px;
+    }
+
+    .blog-post {
+        padding: 35px;
+    }
+
+    header h1 {
+        font-size: 4em;
+    }
+
+    .hero h2 {
+        font-size: 2.5em;
+    }
+}
+
+/* Responsive Design - Mobile & Tablet */
+@media screen and (max-width: 768px) {
+    /* Header adjustments */
+    header {
+        padding: 15px;
+    }
+
+    header h1 {
+        font-size: 2em;
+        letter-spacing: 1px;
+    }
+
+    nav ul {
+        gap: 5px;
+        margin-top: 10px;
+    }
+
+    nav a {
+        padding: 8px 12px;
+        font-size: 0.85em;
+        letter-spacing: 0.5px;
+    }
+
+    /* Main layout - stack vertically */
+    main {
+        flex-direction: column;
+        margin: 15px auto;
+        padding: 0 10px;
+    }
+
+    /* Hero section */
+    .hero {
+        padding: 20px;
+        margin-bottom: 15px;
+    }
+
+    .hero h2 {
+        font-size: 1.5em;
+    }
+
+    .tagline {
+        font-size: 1em;
+    }
+
+    /* Sidebar goes full width */
+    .sidebar {
+        width: 100%;
+    }
+
+    .sidebar-box {
+        margin-bottom: 15px;
+    }
+
+    /* Blog posts */
+    .blog-post {
+        padding: 15px;
+    }
+
+    .post-title {
+        font-size: 1.2em;
+    }
+
+    /* Computers */
+    .computer-item {
+        padding: 15px;
+    }
+
+    .computer-item h3 {
+        font-size: 1.1em;
+    }
+
+    /* Welcome box */
+    .welcome-box {
+        padding: 15px;
+    }
+
+    /* Music player repositioning */
+    .music-player {
+        position: static;
+        margin: 10px auto 0;
+        align-items: center;
+    }
+
+    .music-toggle {
+        font-size: 0.8em;
+        padding: 6px 12px;
+    }
+
+    /* Links */
+    .links-container {
+        margin: 15px auto;
+        max-width: 100%;
+    }
+
+    .link-item {
+        padding: 12px;
+    }
+
+    /* Footer */
+    footer {
+        padding: 15px;
+        font-size: 0.85em;
+    }
+
+    .footer-attribution {
+        font-size: 0.75em;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    /* Extra small screens */
+    header h1 {
+        font-size: 1.5em;
+        letter-spacing: 0.5px;
+    }
+
+    nav a {
+        padding: 6px 10px;
+        font-size: 0.75em;
+    }
+
+    .hero {
+        padding: 15px;
+    }
+
+    .hero h2 {
+        font-size: 1.2em;
+    }
+
+    .post-title {
+        font-size: 1.1em;
+    }
+
+    .blog-post,
+    .computer-item,
+    .sidebar-box,
+    .welcome-box {
+        padding: 12px;
+    }
+}
